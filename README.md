@@ -1,7 +1,7 @@
 # timer
 
-A new Flutter project.
-
+App de estimativa de tempo em um projeto 
+Time estimation app for a project
 ## Getting Started
 
 This project is a starting point for a Flutter application.
