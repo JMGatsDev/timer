@@ -1,9 +1,11 @@
+import 'package:isar/isar.dart';
+import 'package:timer/app/entities/project.dart';
 import 'package:timer/app/entities/project_status.dart';
 import 'package:timer/app/view_model/Project_task_model.dart';
 
 class ProjectModel {
   ProjectModel({
-    this.id,
+    this.id = Isar.autoIncrement,
     required this.name,
     required this.estimate,
     required this.status,
@@ -17,4 +19,16 @@ class ProjectModel {
   final String userId;
 
   final List<ProjectTaskModel> tasks;
+
+  factory ProjectModel.fromEntity(Project project) {
+    project.tasks.loadSync;
+    return ProjectModel(
+        name: project.name,
+        estimate: project.estimate,
+        status: project.status,
+        tasks:
+            project.tasks.map(ProjectTaskModel.fromEntity).toList(),
+        userId: project.userId,
+        id: project.id);
+  }
 }
