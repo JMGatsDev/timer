@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:timer/app/core/database/database.dart';
-import 'package:timer/app/entities/project.dart';
-import 'package:timer/app/entities/project_status.dart';
 import 'package:timer/app/modules/home/widgets/Header_project_menu.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,7 +6,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       drawer: const Drawer(
         child: SafeArea(
