@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:timer/app/entities/project_status.dart';
 import 'package:timer/app/services/projects/project_service.dart';
@@ -15,13 +16,17 @@ class ProjectRegisterController extends Cubit<ProjectRegisterStatus> {
         super(ProjectRegisterStatus.inicial);
 
   Future<void> register(String name, int estimate) async {
-          emit(ProjectRegisterStatus.loading);
+    emit(ProjectRegisterStatus.loading);
+    final String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
+
     try {
       final project = ProjectModel(
-          name: name,
-          estimate: estimate,
-          status: ProjectStatus.emAndamento,
-          task: []);
+        name: name,
+        estimate: estimate,
+        status: ProjectStatus.emAndamento,
+        tasks: [],
+        userId: userId,
+      );
       await _projectService.register(project);
       emit(ProjectRegisterStatus.sucesso);
     } catch (e, s) {
