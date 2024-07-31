@@ -1,0 +1,13 @@
+
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:timer/app/modules/project/detail/project_detail_page.dart';
+
+class ProjectDetailModule extends Module{
+  
+
+@override
+  void routes(RouteManager r) {
+    r.child('/', child:(context)=>const ProjectDetailPage() );
+    super.routes(r);
+  }  
+}

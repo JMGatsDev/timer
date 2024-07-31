@@ -1,6 +1,7 @@
 import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timer/app/core/ui/button_with_loader.dart';
 import 'package:timer/app/modules/project/register/controller/project_register_controller.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -33,14 +34,14 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
       listener: (context, state) {
         switch (state) {
           case ProjectRegisterStatus.sucesso:
-          AsukaSnackbar.success('Projeto criado com sucesso').show();
-          Navigator.pop(context);
+            AsukaSnackbar.success('Projeto criado com sucesso').show();
+            Navigator.pop(context);
             break;
           case ProjectRegisterStatus.failure:
-          AsukaSnackbar.alert('Erro ao salvar projeto').show();
+            AsukaSnackbar.alert('Erro ao salvar projeto').show();
             break;
           default:
-          break;
+            break;
         }
       },
       child: Scaffold(
@@ -84,25 +85,13 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
                   ),
                 ),
                 SizedBox(
-                  height: screenSize.height * 0.01,
-                ),
-                BlocSelector<ProjectRegisterController, ProjectRegisterStatus,
-                    bool>(
-                  bloc: widget.controller,
-                  selector: (state) {
-                    return state == ProjectRegisterStatus.loading;
-                  },
-                  builder: (context, showLoading) {
-                    return Visibility(
-                        visible: showLoading,
-                        child: const CircularProgressIndicator.adaptive());
-                  },
-                ),
-                SizedBox(
                   width: screenSize.width,
                   height: screenSize.height * 0.06,
-                  child: ElevatedButton(
-                    child: const Text('Salvar'),
+                  child: ButtonWithLoader<ProjectRegisterController,ProjectRegisterStatus>(
+                    bloc: widget.controller,
+            
+                    selector: (state) => state == ProjectRegisterStatus.loading,
+                    label: ('Salvar'),
                     onPressed: () async {
                       final formValid =
                           _formKey.currentState?.validate() ?? false;

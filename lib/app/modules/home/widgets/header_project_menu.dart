@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:timer/app/entities/project_status.dart';
+import 'package:timer/app/modules/home/widgets/controller/home_controller.dart';
 
 class HeaderProjectMenu extends SliverPersistentHeaderDelegate {
+  HeaderProjectMenu({
+    required this.controller,
+  });
+  final HomeController controller;
+
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -18,6 +25,7 @@ class HeaderProjectMenu extends SliverPersistentHeaderDelegate {
               SizedBox(
                 width: constraints.maxWidth * 0.5,
                 child: DropdownButtonFormField<ProjectStatus>(
+                  value: ProjectStatus.emAndamento,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -26,19 +34,24 @@ class HeaderProjectMenu extends SliverPersistentHeaderDelegate {
                       isCollapsed: true),
                   items: ProjectStatus.values
                       .map((e) => DropdownMenuItem(
-                            child: Text(e.label),
                             value: e,
+                            child: Text(e.label),
                           ))
                       .toList(),
-                  onChanged: (value) {},
+                  onChanged: (status) {
+                    if (status != null) {
+                      controller.filter(status);
+                    }
+                  },
                 ),
               ),
               SizedBox(
                 width: constraints.maxWidth * 0.4,
                 child: ElevatedButton.icon(
                   icon: const Icon(Icons.add),
-                  onPressed: () {
-                    Modular.to.pushNamed('/project/register');
+                  onPressed: () async {
+                    await Modular.to.pushNamed('/project/register');
+                    controller.loadProjects();
                   },
                   label: const Text('Novo Projeto'),
                 ),

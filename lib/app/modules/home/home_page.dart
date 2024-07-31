@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timer/app/modules/home/widgets/Header_project_menu.dart';
 import 'package:timer/app/modules/home/widgets/controller/home_controller.dart';
+import 'package:timer/app/modules/home/widgets/project_title.dart';
 import 'package:timer/app/view_model/project_model.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key, required this.controller});
+   HomePage({super.key, required this.controller});
 
-  HomeController controller;
+   HomeController controller;
   @override
   Widget build(BuildContext context) {
     return BlocListener<HomeController, HomeState>(
@@ -41,7 +42,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SliverPersistentHeader(
-                delegate: HeaderProjectMenu(),
+                delegate: HeaderProjectMenu(controller: controller),
                 pinned: true,
               ),
               BlocSelector<HomeController, HomeState, bool>(
@@ -70,10 +71,7 @@ class HomePage extends StatelessWidget {
                   return SliverList(
                       delegate: SliverChildListDelegate(projects
                           .map(
-                            (project) => ListTile(
-                              title: Text(project.name),
-                              subtitle: Text('${project.estimate}'),
-                            ),
+                            (project) => ProjectTitle(projectModel:project),
                           )
                           .toList()));
                 },

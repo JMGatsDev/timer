@@ -12,7 +12,7 @@ class LoginController extends Cubit<LoginState> {
 
   LoginController()
       : _authService = Modular.get<AuthService>(),
-        super(LoginState.initial());
+        super(const LoginState.initial());
 
   Future<void> singIn() async {
     try {

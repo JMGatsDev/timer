@@ -13,13 +13,13 @@ class ProjectServiceImpl implements ProjectService {
   final ProjectRepository _projectRepository;
 
   @override
-  Future<void> register(ProjectModel project_model) async {
+  Future<void> register(ProjectModel projectModel) async {
     final project = Project()
-      ..id = project_model.id! 
-      ..name = project_model.name
-      ..status = project_model.status
-      ..estimate = project_model.estimate
-      ..userId = project_model.userId;
+      ..id = projectModel.id! 
+      ..name = projectModel.name
+      ..status = projectModel.status
+      ..estimate = projectModel.estimate
+      ..userId = projectModel.userId;
     await _projectRepository.register(project);
   }
 
