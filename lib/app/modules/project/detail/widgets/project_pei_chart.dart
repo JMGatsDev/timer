@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class ProjectPeiChart extends StatelessWidget {
-  const ProjectPeiChart({super.key});
+  const ProjectPeiChart(
+      {super.key, required this.projectEstimate, required this.totalTask});
 
+  final int projectEstimate;
+  final int totalTask;
   @override
   Widget build(BuildContext context) {
+    final residual = (projectEstimate - totalTask);
     final theme = Theme.of(context);
     final screenSize = MediaQuery.of(context).size;
     return SizedBox(
@@ -18,27 +22,28 @@ class ProjectPeiChart extends StatelessWidget {
             PieChartData(
               sections: [
                 PieChartSectionData(
-                  value: 50,
-                  color: theme.primaryColor,
+                  value: totalTask.toDouble(),
+                  color: theme.primaryColorLight,
                   showTitle: true,
-                  title: '50h',
+                  title: '${totalTask}h',
                   titleStyle: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 PieChartSectionData(
-                    value: 150,
-                    color: theme.primaryColorLight,
-                    showTitle: true,
-                    title: '150h',
-                    titleStyle: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold)),
+                  value: residual.toDouble(),
+                  color: theme.primaryColor,
+                  showTitle: true,
+                  title: '${residual}h',
+                  titleStyle: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ),
           Align(
             alignment: Alignment.center,
             child: Text(
-              '200 H',
+              '${projectEstimate}h',
               style: TextStyle(
                   fontSize: 25,
                   color: theme.primaryColor,

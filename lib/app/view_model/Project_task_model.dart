@@ -1,11 +1,12 @@
+import 'package:isar/isar.dart';
 import 'package:timer/app/entities/project_task.dart';
 
 class ProjectTaskModel {
-  int id;
+  Id? id;
   String name;
   int duration;
   ProjectTaskModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.duration,
   });

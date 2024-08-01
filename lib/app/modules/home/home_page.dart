@@ -7,9 +7,9 @@ import 'package:timer/app/modules/home/widgets/project_title.dart';
 import 'package:timer/app/view_model/project_model.dart';
 
 class HomePage extends StatelessWidget {
-   HomePage({super.key, required this.controller});
+  const HomePage({super.key, required this.controller});
 
-   HomeController controller;
+  final HomeController controller;
   @override
   Widget build(BuildContext context) {
     return BlocListener<HomeController, HomeState>(

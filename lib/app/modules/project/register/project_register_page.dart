@@ -84,6 +84,9 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
                     ],
                   ),
                 ),
+                 SizedBox(
+                  height: screenSize.height * 0.01,
+                ),
                 SizedBox(
                   width: screenSize.width,
                   height: screenSize.height * 0.06,

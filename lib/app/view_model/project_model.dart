@@ -1,7 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:timer/app/entities/project.dart';
 import 'package:timer/app/entities/project_status.dart';
-import 'package:timer/app/view_model/Project_task_model.dart';
+import 'package:timer/app/view_model/project_task_model.dart';
 
 class ProjectModel {
   ProjectModel({
