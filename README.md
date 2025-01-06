@@ -1,9 +1,7 @@
-# timer
+# Sobre
 
-App de estimativa de tempo em um projeto 
+Com esse aplicativo, é possível monitorar o tempo dedicado a cada projeto e tarefa, com funcionalidades de iniciar, pausar e finalizar cronômetros, registro de horas e geração de relatórios detalhados para um gerenciamento de produtividade eficiente. 📊⏳
 
-
-Time estimation app for a project
 ## Getting Started
 
 This project is a starting point for a Flutter application.
